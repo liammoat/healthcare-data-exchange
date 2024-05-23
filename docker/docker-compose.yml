@@ -115,6 +115,18 @@ services:
     profiles:
       - manual
 
+  local-templates-pusher:
+    image: local-templates-pusher
+    container_name: local-templates-pusher
+    environment:
+      TAG: ${TAG}
+      STORAGE_CONNECTION_STRING: ${AZURE_STORAGE_CONNECTION_STRING}
+    build:
+      context: ../templates
+      dockerfile: ./azurite.Dockerfile
+    profiles:
+      - manual
+
   data-init:
     image: data-init
     container_name: data-init
